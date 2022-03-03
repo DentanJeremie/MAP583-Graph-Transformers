@@ -38,6 +38,6 @@
         "pos_enc_dim": 2,
         "wl_pos_enc": false,
         "full_graph": false,
-        "renormalization_pos_enc": 10.0
+        "renormalization_pos_enc": 0.1
     }
 }
