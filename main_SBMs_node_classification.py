@@ -349,6 +349,7 @@ def main():
     if args.self_loop is not None:
         net_params['self_loop'] = True if args.self_loop=='True' else False
     if args.lap_pos_enc is not None:
+        print(f"\n\nLap_pos_enc is not none !")
         net_params['lap_pos_enc'] = True if args.pos_enc=='True' else False
     if args.pos_enc_dim is not None:
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
