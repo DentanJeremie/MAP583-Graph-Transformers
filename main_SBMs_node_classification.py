@@ -321,7 +321,6 @@ def main():
         params['max_time'] = float(args.max_time)
     # network parameters
     net_params = config['net_params']
-    print(net_params)
     net_params['device'] = device
     net_params['gpu_id'] = config['gpu']['id']
     net_params['batch_size'] = params['batch_size']
@@ -355,12 +354,6 @@ def main():
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
     if args.wl_pos_enc is not None:
         net_params['wl_pos_enc'] = True if args.pos_enc=='True' else False
-    if args.renormalization_pos_enc is not None:
-        print(f"\n\nIs not none : {args.renormalization_pos_enc}")
-        net_params['renormalization_pos_enc'] = args.renormalization_pos_enc
-    else:
-        print(f"\n\nIs none !")
-        net_params['renormalization_pos_enc'] = 1.0
     print(f"net_params['renormalization_pos_enc'] = {net_params['renormalization_pos_enc']}\n\n\n")
     print(f"net_params['lap_pos_enc'] = {net_params['lap_pos_enc']}\n\n\n")
         
