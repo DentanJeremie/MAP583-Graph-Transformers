@@ -273,6 +273,7 @@ def main():
     parser.add_argument('--pos_enc_dim', help="Please give a value for pos_enc_dim")
     parser.add_argument('--lap_pos_enc', help="Please give a value for lap_pos_enc")
     parser.add_argument('--wl_pos_enc', help="Please give a value for wl_pos_enc")
+    parser.add_argument('--renormalization_pos_enc', help="Please give a value for renormalization_pos_enc")
     args = parser.parse_args()
     with open(args.config) as f:
         config = json.load(f)
