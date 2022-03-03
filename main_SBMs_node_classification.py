@@ -349,7 +349,6 @@ def main():
     if args.self_loop is not None:
         net_params['self_loop'] = True if args.self_loop=='True' else False
     if args.lap_pos_enc is not None:
-        print(f"\n\nLap_pos_enc is not none !")
         net_params['lap_pos_enc'] = True if args.pos_enc=='True' else False
     if args.pos_enc_dim is not None:
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
@@ -362,11 +361,12 @@ def main():
         print(f"\n\nIs none !")
         net_params['renormalization_pos_enc'] = 1.0
     print(f"net_params['renormalization_pos_enc'] = {net_params['renormalization_pos_enc']}\n\n\n")
+    print(f"net_params['lap_pos_enc'] = {net_params['lap_pos_enc']}\n\n\n")
         
     # SBM
     net_params['in_dim'] = torch.unique(dataset.train[0][0].ndata['feat'],dim=0).size(0) # node_dim (feat is an integer)
     net_params['n_classes'] = torch.unique(dataset.train[0][1],dim=0).size(0)
-    
+
 
     root_log_dir = out_dir + 'logs/' + MODEL_NAME + "_" + DATASET_NAME + "_GPU" + str(config['gpu']['id']) + "_" + time.strftime('%Hh%Mm%Ss_on_%b_%d_%Y')
     root_ckpt_dir = out_dir + 'checkpoints/' + MODEL_NAME + "_" + DATASET_NAME + "_GPU" + str(config['gpu']['id']) + "_" + time.strftime('%Hh%Mm%Ss_on_%b_%d_%Y')
