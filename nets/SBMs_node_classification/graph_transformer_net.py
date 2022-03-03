@@ -34,6 +34,7 @@ class GraphTransformerNet(nn.Module):
         self.device = net_params['device']
         self.lap_pos_enc = net_params['lap_pos_enc']
         self.wl_pos_enc = net_params['wl_pos_enc']
+        self.renormalization_pos_enc = net_params['renormalization_pos_enc']
         max_wl_role_index = 100 
         
         if self.lap_pos_enc:
@@ -57,10 +58,10 @@ class GraphTransformerNet(nn.Module):
         # input embedding
         h = self.embedding_h(h)
         if self.lap_pos_enc:
-            h_lap_pos_enc = self.embedding_lap_pos_enc(h_lap_pos_enc.float()) 
+            h_lap_pos_enc = self.renormalization_pos_enc * self.embedding_lap_pos_enc(h_lap_pos_enc.float()) 
             h = h + h_lap_pos_enc
         if self.wl_pos_enc:
-            h_wl_pos_enc = self.embedding_wl_pos_enc(h_wl_pos_enc) 
+            h_wl_pos_enc = self.renormalization_pos_enc * self.embedding_wl_pos_enc(h_wl_pos_enc) 
             h = h + h_wl_pos_enc
         h = self.in_feat_dropout(h)
         

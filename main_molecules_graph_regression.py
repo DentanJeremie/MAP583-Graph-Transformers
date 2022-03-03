@@ -353,7 +353,6 @@ def main():
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
     if args.wl_pos_enc is not None:
         net_params['wl_pos_enc'] = True if args.pos_enc=='True' else False
-        
     
     # ZINC
     net_params['num_atom_type'] = dataset.num_atom_type
