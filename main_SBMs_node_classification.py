@@ -356,12 +356,16 @@ def main():
         net_params['wl_pos_enc'] = True if args.pos_enc=='True' else False
     if args.renormalization_pos_enc is not None:
         net_params['renormalization_pos_enc'] = float(args.renormalization_pos_enc)
+
+    try:
+        net_params['renormalization_pos_enc']
+    except KeyError:
+        net_params['renormalization_pos_enc'] = 1.0
         
     # SBM
     net_params['in_dim'] = torch.unique(dataset.train[0][0].ndata['feat'],dim=0).size(0) # node_dim (feat is an integer)
     net_params['n_classes'] = torch.unique(dataset.train[0][1],dim=0).size(0)
 
-    print(net_params)
     raise ValueError
 
 
