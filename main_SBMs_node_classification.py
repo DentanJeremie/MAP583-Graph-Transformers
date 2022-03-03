@@ -321,6 +321,7 @@ def main():
         params['max_time'] = float(args.max_time)
     # network parameters
     net_params = config['net_params']
+    print(net_params)
     net_params['device'] = device
     net_params['gpu_id'] = config['gpu']['id']
     net_params['batch_size'] = params['batch_size']
