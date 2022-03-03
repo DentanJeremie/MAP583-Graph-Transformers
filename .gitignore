@@ -1,1 +1,2 @@
-data/*.pkl
+data/molecules/*.pkl
+data/SBMs/*.pkl
