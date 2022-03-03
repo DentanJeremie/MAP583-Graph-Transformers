@@ -354,8 +354,6 @@ def main():
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
     if args.wl_pos_enc is not None:
         net_params['wl_pos_enc'] = True if args.pos_enc=='True' else False
-    print(f"net_params['renormalization_pos_enc'] = {net_params['renormalization_pos_enc']}\n\n\n")
-    print(f"net_params['lap_pos_enc'] = {net_params['lap_pos_enc']}\n\n\n")
         
     # SBM
     net_params['in_dim'] = torch.unique(dataset.train[0][0].ndata['feat'],dim=0).size(0) # node_dim (feat is an integer)
