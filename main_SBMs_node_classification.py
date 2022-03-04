@@ -131,6 +131,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs,save_model=
 
     model = gnn_model(MODEL_NAME, net_params)
     if load_model is not None:
+        print('LOADING MODEL : '+load_model)
         model.load_state_dict(torch.load(load_model))
     model = model.to(device)
 
@@ -222,6 +223,7 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs,save_model=
     print("AVG TIME PER EPOCH: {:.4f}s".format(np.mean(per_epoch_time)))
     
     if save_model is not None:
+        print('SAVING MODEL : '+save_model)
         torch.save(model.state_dict(), save_model)
     
     writer.close()
