@@ -80,7 +80,7 @@ def view_model_param(MODEL_NAME, net_params):
     TRAINING CODE
 """
 
-def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
+def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs,save_model=None,load_model=None):
     
     start0 = time.time()
     per_epoch_time = []
@@ -130,6 +130,8 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     print("Number of Classes: ", net_params['n_classes'])
 
     model = gnn_model(MODEL_NAME, net_params)
+    if load_model is not None:
+        model.load_state_dict(torch.load(load_model))
     model = model.to(device)
 
     optimizer = optim.Adam(model.parameters(), lr=params['init_lr'], weight_decay=params['weight_decay'])
@@ -218,7 +220,10 @@ def train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs):
     print("Convergence Time (Epochs): {:.4f}".format(epoch))
     print("TOTAL TIME TAKEN: {:.4f}s".format(time.time()-start0))
     print("AVG TIME PER EPOCH: {:.4f}s".format(np.mean(per_epoch_time)))
-
+    
+    if save_model is not None:
+        torch.save(model.state_dict(), save_model)
+    
     writer.close()
 
     """
@@ -274,6 +279,8 @@ def main():
     parser.add_argument('--lap_pos_enc', help="Please give a value for lap_pos_enc")
     parser.add_argument('--wl_pos_enc', help="Please give a value for wl_pos_enc")
     parser.add_argument('--renormalization_pos_enc', help="Please give a value for renormalization_pos_enc")
+    parser.add_argument('--save_model', help="Please give the path for the model to be saved")
+    parser.add_argument('--load_model', help="Please give the path for the model to be loaded")
     args = parser.parse_args()
     with open(args.config) as f:
         config = json.load(f)
@@ -380,7 +387,7 @@ def main():
         os.makedirs(out_dir + 'configs')
 
     net_params['total_param'] = view_model_param(MODEL_NAME, net_params)
-    train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs)
+    train_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs,args.save_model, args.load_model)
 
     
     
