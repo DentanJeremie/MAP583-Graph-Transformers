@@ -148,7 +148,7 @@ def test_val_pipeline(MODEL_NAME, dataset, params, net_params, dirs,save_model=N
         
     # At any point you can hit Ctrl + C to break out of training early.
     try:
-        test_loss, test_acc = evaluate_network(model, device, test_loader, epoch)
+        test_loss, test_acc = evaluate_network(model, device, test_loader, 0)
     
     except KeyboardInterrupt:
         print('-' * 89)
