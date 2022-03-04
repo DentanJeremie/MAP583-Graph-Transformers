@@ -48,6 +48,7 @@ def accuracy_SBM(scores, targets):
         else:
             pr_classes[r] = 0.0
     acc = 100.* np.sum(pr_classes)/ float(nb_classes)
+   
     return acc
 
 

@@ -156,6 +156,9 @@ def laplacian_positional_encoding(g, pos_enc_dim):
     #EigVal, EigVec = sp.linalg.eigs(L, k=pos_enc_dim+1, which='SR')
     EigVal, EigVec = sp.linalg.eigs(L, k=pos_enc_dim+1, which='SR', tol=1e-2) # for 40 PEs
     EigVec = EigVec[:, EigVal.argsort()] # increasing order
+    ################ Ajout ici 
+    #EigVal = EigVal[EigVal.argsort()]
+    #EigVec = EigVec@np.diag(np.exp(-EigVal))
     g.ndata['lap_pos_enc'] = torch.from_numpy(EigVec[:,1:pos_enc_dim+1]).float() 
 
     return g

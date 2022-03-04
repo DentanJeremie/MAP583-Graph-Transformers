@@ -27,6 +27,9 @@ def train_epoch(model, optimizer, device, data_loader, epoch):
             sign_flip = torch.rand(batch_lap_pos_enc.size(1)).to(device)
             sign_flip[sign_flip>=0.5] = 1.0; sign_flip[sign_flip<0.5] = -1.0
             batch_lap_pos_enc = batch_lap_pos_enc * sign_flip.unsqueeze(0)
+            ###############""Ajout ci-dessous 
+            #batch_lap_pos_enc = torch.abs(batch_lap_pos_enc)
+
         except:
             batch_lap_pos_enc = None
             
@@ -36,7 +39,7 @@ def train_epoch(model, optimizer, device, data_loader, epoch):
             batch_wl_pos_enc = None
 
         batch_scores = model.forward(batch_graphs, batch_x, batch_e, batch_lap_pos_enc, batch_wl_pos_enc)
-    
+        
         loss = model.loss(batch_scores, batch_labels)
         loss.backward()
         optimizer.step()
