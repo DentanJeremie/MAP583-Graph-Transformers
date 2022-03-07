@@ -358,11 +358,11 @@ def main():
     if args.self_loop is not None:
         net_params['self_loop'] = True if args.self_loop=='True' else False
     if args.lap_pos_enc is not None:
-        net_params['lap_pos_enc'] = True if args.pos_enc=='True' else False
+        net_params['lap_pos_enc'] = True if args.lap_pos_enc=='True' else False
     if args.pos_enc_dim is not None:
         net_params['pos_enc_dim'] = int(args.pos_enc_dim)
     if args.wl_pos_enc is not None:
-        net_params['wl_pos_enc'] = True if args.pos_enc=='True' else False
+        net_params['wl_pos_enc'] = True if args.wl_pos_enc=='True' else False
     if args.renormalization_pos_enc is not None:
         net_params['renormalization_pos_enc'] = float(args.renormalization_pos_enc)
 
