@@ -198,7 +198,7 @@ SBM_parameters['size_max'] = 35
 #SBM_parameters['p'] = 0.5; SBM_parameters['q'] = 0.25 # v3
 SBM_parameters['p'] = 0.5; SBM_parameters['q'] = 0.45 # v4
 SBM_parameters['p_pattern'] = 0.5
-SBM_parameters['q_pattern'] = 0.5  
+SBM_parameters['q_pattern'] = 0.55  
 SBM_parameters['vocab_size'] = 3 
 #SBM_parameters['size_subgraph'] = 20 # v1
 SBM_parameters['size_subgraph_min'] = 5 # v2
