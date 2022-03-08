@@ -78,6 +78,12 @@ python test_SBM.py --load_model out/Models/modelName --config config/configName 
 
 This is a long operation (>5h). The two jupyter notebooks are in `data/SBMs/generate_datasets` First execute `generate_SBM_PATTERN.ipynb`and then `prepare_SBM_PATTERN.ipynb`.
 
+Four datasets can be downloaded with the following links. The parameter changed is q :
+- https://filesender.renater.fr/?s=download&token=9022a4ba-fe2b-48e8-bdd3-7b23e18ac9e2
+- https://filesender.renater.fr/?s=download&token=e6b8268f-b10f-4db5-97f8-e4a77589c2bd
+- https://filesender.renater.fr/?s=download&token=6b0954ec-1096-4cb9-b300-6a7a81ab0e1d
+- https://filesender.renater.fr/?s=download&token=6e16d46e-723e-4bd9-b862-a454447a34ab
+
 ## II. Readme content of the source code of the paper
 
 Source code for the paper "**[A Generalization of Transformer Networks to Graphs](https://arxiv.org/abs/2012.09699)**" by _[Vijay Prakash Dwivedi](https://github.com/vijaydwivedi75) and [Xavier Bresson](https://github.com/xbresson)_, at **AAAI'21 Workshop on Deep Learning on Graphs: Methods and Applications (DLG-AAAI'21)**.
