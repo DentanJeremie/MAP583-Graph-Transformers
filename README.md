@@ -33,12 +33,12 @@ bash scripts/SBMs/ script_main_SBMs_node_classification_PATTERN_500k_SizeEm.sh
 - New argument to save the model or load one : this enables to save a model (either to train if again later or to test it on another dataset) and to load it to continue the training phase. Usage :
 
 ```
-python main_SBMs_node_classification.py --save_model out/models/modelName
+python main_SBMs_node_classification.py --save_model out/Models/modelName
 
-python main_SBMs.py --load_model out/models/modelName
+python main_SBMs_node_classification.py --load_model out/Models/modelName
 ```
 
-Two pretrained models are provided in out/models (80 epoch, about about 3h execution time for each). Their configuration are the following :
+Two pretrained models are provided in out/Models (80 epoch, about about 3h execution time for each). Their configuration are the following :
 
 For `baseSMB-lapEnc` :
 ```
@@ -71,7 +71,7 @@ Total Parameters: 522742
 A test file `test_SBM.py` has been created to test a model (saved as described previously) on another dataset. Usage :
 
 ```
-python test_SBM.py --load_model out/models/modelName --config config/configName --dataset data/SBMs/datasetName
+python test_SBM.py --load_model out/Models/modelName --config config/configName --dataset data/SBMs/datasetName
 ```
 
 ### 4. Two jupyter notebook to generate the dataset
