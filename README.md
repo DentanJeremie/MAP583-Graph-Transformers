@@ -2,6 +2,56 @@
 
 # Graph Transformer Architecture
 
+This work is based on source code of the paper "**[A Generalization of Transformer Networks to Graphs](https://arxiv.org/abs/2012.09699)**" by _[Vijay Prakash Dwivedi](https://github.com/vijaydwivedi75) and [Xavier Bresson](https://github.com/xbresson)_, at **AAAI'21 Workshop on Deep Learning on Graphs: Methods and Applications (DLG-AAAI'21)**. 
+
+## I. Adaptations made to the source code
+
+Our adaptations are the following :
+
+- New scripts to conduct other experiment.
+- New arguments available with `main_SBMs_node_classification.py`. Some of them enable to save to model to test it on other dataset, some of them enable to add a renormalization of the laplacian encoding.
+- Creation of `test_SBM.py` to test a saved model on a specific dataset
+- Two jupyter notebook in the folder `data/SBMs/generate_datasets`
+
+The result of our adaptations are presented in the `presentation` folder.
+
+### 1. New scripts
+
+Two new scripts are available :
+```
+bash scripts/SBMs/script_main_SBMs_node_classification_PATTERN_500k_LaplRenorm.sh
+
+bash scripts/SBMs/ script_main_SBMs_node_classification_PATTERN_500k_SizeEm.sh
+```
+
+- The first one provides empirical results on the effect of an homothety applied to the laplacian encoding.
+- The second one provides empirical results on the effect of changing the dimension of the laplacian encoding (which means taking more or less eigenvectors of the laplacian for the embedding).
+
+### 2. New arguments for `main_SBMs_node_classification.py`
+
+- New arguments for homothety : the argument `--renormalization_pos_enc`has been added to the argument parser of `main_SBMs_node_classification.py`. This argument is the factor of the homothety applied to the laplacian encoding, and overwrites the one in the config file if provided.
+- New argument to save the model or load one : this enables to save a model (either to train if again later or to test it on another dataset) and to load it to continue the training phase. Usage :
+
+```
+python main_SBMs_node_classification.py --save_model out/modelName
+
+python main_SBMs --load_model out/modelName
+```
+
+### 3. Creation of a test file
+
+A test file `test_SBM.py` has been created to test a model (saved as described previously) on another dataset. Usage :
+
+```
+python test_SBM.py --load_model out/modelName --config config/configName --dataset data/SBMs/datasetName
+```
+
+### 4. Two jupyter notebook to generate the dataset
+
+This is a long operation (>5h). The two jupyter notebooks are in `data/SBMs/generate_datasets` First execute `generate_SBM_PATTERN.ipynb`and then `prepare_SBM_PATTERN.ipynb`.
+
+## II. Readme content of the source code of the paper
+
 Source code for the paper "**[A Generalization of Transformer Networks to Graphs](https://arxiv.org/abs/2012.09699)**" by _[Vijay Prakash Dwivedi](https://github.com/vijaydwivedi75) and [Xavier Bresson](https://github.com/xbresson)_, at **AAAI'21 Workshop on Deep Learning on Graphs: Methods and Applications (DLG-AAAI'21)**.
 
 We propose a generalization of transformer neural network architecture for arbitrary graphs: **Graph Transformer**. <br>Compared to the [Standard Transformer](https://papers.nips.cc/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf), the highlights of the presented architecture are: 
@@ -20,7 +70,7 @@ We propose a generalization of transformer neural network architecture for arbit
 </p>
 
 
-## 1. Repo installation
+### 1. Repo installation
 
 This project is based on the [benchmarking-gnns](https://github.com/graphdeeplearning/benchmarking-gnns) repository.
 
@@ -29,21 +79,21 @@ This project is based on the [benchmarking-gnns](https://github.com/graphdeeplea
 
 <br>
 
-## 2. Download datasets
+### 2. Download datasets
 
 [Proceed as follows](./docs/02_download_datasets.md) to download the datasets used to evaluate Graph Transformer.
 
 
 <br>
 
-## 3. Reproducibility 
+### 3. Reproducibility 
 
 [Use this page](./docs/03_run_codes.md) to run the codes and reproduce the published results.
 
 
 <br>
 
-## 4. Reference 
+### 4. Reference 
 
 :page_with_curl: Paper [on arXiv](https://arxiv.org/abs/2012.09699)    
 :pencil: Blog [on Towards Data Science](https://towardsdatascience.com/graph-transformer-generalization-of-transformers-to-graphs-ead2448cff8b)    
@@ -56,7 +106,6 @@ This project is based on the [benchmarking-gnns](https://github.com/graphdeeplea
   year={2021}
 }
 ```
-
 
 <br><br><br>
 
