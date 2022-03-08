@@ -33,9 +33,37 @@ bash scripts/SBMs/ script_main_SBMs_node_classification_PATTERN_500k_SizeEm.sh
 - New argument to save the model or load one : this enables to save a model (either to train if again later or to test it on another dataset) and to load it to continue the training phase. Usage :
 
 ```
-python main_SBMs_node_classification.py --save_model out/modelName
+python main_SBMs_node_classification.py --save_model out/models/modelName
 
-python main_SBMs --load_model out/modelName
+python main_SBMs --load_model out/models/modelName
+```
+
+Two pretrained models are provided in out/models (80 epoch, about about 3h execution time for each). Their configuration are the following :
+
+For `baseSMB-lapEnc` :
+```
+Dataset: SBM_PATTERN,
+Model: GraphTransformer
+
+params={'seed': 41, 'epochs': 80, 'batch_size': 20, 'init_lr': 0.0005, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 10, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 24}
+
+net_params={'L': 10, 'n_heads': 8, 'hidden_dim': 80, 'out_dim': 80, 'residual': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'layer_norm': False, 'batch_norm': True, 'self_loop': False, 'lap_pos_enc': True, 'pos_enc_dim': 2, 'wl_pos_enc': False, 'full_graph': False, 'device': device(type='cuda'), 'gpu_id': 0, 'batch_size': 20, 'renormalization_pos_enc': 1.0, 'in_dim': 3, 'n_classes': 2, 'total_param': 522982}
+
+
+Total Parameters: 522982
+```
+
+For `baseBSM-NoLap` :
+```
+Dataset: SBM_PATTERN,
+Model: GraphTransformer
+
+params={'seed': 41, 'epochs': 80, 'batch_size': 20, 'init_lr': 0.0005, 'lr_reduce_factor': 0.5, 'lr_schedule_patience': 10, 'min_lr': 1e-06, 'weight_decay': 0.0, 'print_epoch_interval': 5, 'max_time': 24}
+
+net_params={'L': 10, 'n_heads': 8, 'hidden_dim': 80, 'out_dim': 80, 'residual': True, 'readout': 'mean', 'in_feat_dropout': 0.0, 'dropout': 0.0, 'layer_norm': False, 'batch_norm': True, 'self_loop': False, 'lap_pos_enc': False, 'pos_enc_dim': 2, 'wl_pos_enc': False, 'full_graph': False, 'device': device(type='cuda'), 'gpu_id': 0, 'batch_size': 20, 'renormalization_pos_enc': 1.0, 'in_dim': 3, 'n_classes': 2, 'total_param': 522742}
+
+
+Total Parameters: 522742
 ```
 
 ### 3. Creation of a test file
@@ -43,7 +71,7 @@ python main_SBMs --load_model out/modelName
 A test file `test_SBM.py` has been created to test a model (saved as described previously) on another dataset. Usage :
 
 ```
-python test_SBM.py --load_model out/modelName --config config/configName --dataset data/SBMs/datasetName
+python test_SBM.py --load_model out/models/modelName --config config/configName --dataset data/SBMs/datasetName
 ```
 
 ### 4. Two jupyter notebook to generate the dataset
