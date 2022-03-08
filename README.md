@@ -35,7 +35,7 @@ bash scripts/SBMs/ script_main_SBMs_node_classification_PATTERN_500k_SizeEm.sh
 ```
 python main_SBMs_node_classification.py --save_model out/models/modelName
 
-python main_SBMs --load_model out/models/modelName
+python main_SBMs.py --load_model out/models/modelName
 ```
 
 Two pretrained models are provided in out/models (80 epoch, about about 3h execution time for each). Their configuration are the following :
